@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MangaService.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MangaService.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:18883/TruyenTranhTuanMangaService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:simpleType name="Category">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="All" />
+      <xs:enumeration value="LatestUpdated" />
+      <xs:enumeration value="MostPopular" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Category" nillable="true" type="tns:Category" />
+  <xs:complexType name="ArrayOfManga">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Manga" nillable="true" type="tns:Manga" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfManga" nillable="true" type="tns:ArrayOfManga" />
+  <xs:complexType name="Manga">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChapterList" nillable="true" type="tns:ArrayOfChapter" />
+      <xs:element minOccurs="0" name="MangaInfo" nillable="true" type="tns:MangaInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Manga" nillable="true" type="tns:Manga" />
+  <xs:complexType name="ArrayOfChapter">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Chapter" nillable="true" type="tns:Chapter" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfChapter" nillable="true" type="tns:ArrayOfChapter" />
+  <xs:complexType name="Chapter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChapterName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChapterUri" nillable="true" type="xs:anyURI" />
+      <xs:element minOccurs="0" name="IsDownloaded" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsRead" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UpdatedDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Chapter" nillable="true" type="tns:Chapter" />
+  <xs:complexType name="MangaInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CoverImage" nillable="true" type="xs:anyURI" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GenreListName" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="LatestChapter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LatestUpdatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MangaName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MangaUri" nillable="true" type="xs:anyURI" />
+      <xs:element minOccurs="0" name="MaxRating" type="xs:int" />
+      <xs:element minOccurs="0" name="Rating" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Summary" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MangaInfo" nillable="true" type="tns:MangaInfo" />
+</xs:schema>
